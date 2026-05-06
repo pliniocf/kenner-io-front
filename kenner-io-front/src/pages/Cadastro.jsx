@@ -9,8 +9,6 @@ import axios from 'axios';
 
 import './Cadastro.css'
 
-
-
 function Cadastro() {
 
   const [form, setForm] = useState({
@@ -89,7 +87,7 @@ function Cadastro() {
     </div>}
 
     <br/><br/><button onClick={salvarUsuario} className='btn-salvar'>
-      Login / Cadastro
+      Salvar
     </button>
   </div>
   )
