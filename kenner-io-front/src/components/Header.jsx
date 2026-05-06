@@ -7,7 +7,9 @@ function Header() {
   return ( 
     <div>
       <header className='header-landing'>
-        <button onClick={() => navigate("/login")} className='button-header-landing'>
+        <p className='opcoes' onClick={() => navigate('/')}>Home</p>
+        <p className='opcoes' onClick={() => navigate('/servicos')}>Serviços</p>
+        <button onClick={() => navigate('/login')} className='button-header-landing'>
           Login / Cadastro
         </button>
       </header>

@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Cadastro from './pages/Cadastro';
 import Login from './pages/Login.jsx';
+import Servicos from './pages/Servicos.jsx'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/servicos" element={<Servicos />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

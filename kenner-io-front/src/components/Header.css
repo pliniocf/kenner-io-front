@@ -19,3 +19,12 @@
   cursor: pointer;
   margin-left: auto;
 }
+
+.opcoes {
+  padding-right: 30px;
+}
+
+.opcoes:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
