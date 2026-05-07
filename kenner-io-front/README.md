@@ -1,16 +1,47 @@
-# React + Vite
+# Kenner IO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Stacks
 
-Currently, two official plugins are available:
+As stacks escolhidas foram NodeJS, React, MySQL, Prisma e JWT.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A maior parte delas foi escolhida por maior familiaridade e velocidade no desenvolvimento. O Prisma foi escolhido por parecer mais simples de implementar e atender bem aos requisitos do projeto, principalmente na manipulação de dados relacionais e integração com MySQL.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Rodar o projeto
 
-## Expanding the ESLint configuration
+Frontend:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+cd ./kenner-io-front
+npm i
+npm run dev
+```
+
+Primeiramente deverá haver um banco MySQL de pé com as coleções:
+
+agendamentos
+profissionais_servicos
+servicos
+usuarios
+
+Os dados referentes ao banco estão em:
+```./prisma/schema.prisma```
+
+## Arquitetura
+
+A escolha por monólito modular aconteceu principalmente por equilibrar simplicidade e organização. Como o projeto possui um escopo relativamente pequeno/médio e precisava ser desenvolvido rapidamente, não faria muito sentido adicionar a complexidade operacional de microserviços.
+
+Além disso, caso o projeto cresça no futuro, a separação modular já ajuda a preparar uma possível migração para serviços independentes sem a necessidade de reestruturar completamente a aplicação.
+
+## O que ficou de fora
+
+Infelizmente algumas coisas ficaram de fora. Não tive acesso ao meu computador até esta segunda feira, então não pude iniciar o projeto antes.
+
+As notificações e importação ficaram de fora. Ajustes nos cadastros para fazer travas de perfil também não foram realizados e as consultas e dashboards também não foram possíveis.
+
+Acredito que com o tempo normal eu teria conseguido deixar pelo menos funcional todos os detalhes sobre o agendamento e cadastro/login de usuário, além da implementação da importação em massa e provavelmente a notificação automática.
+
+Para os dashboards provavelmente precisaria de um pouco mais de tempo.
+
+Obrigado pela oportunidade!
