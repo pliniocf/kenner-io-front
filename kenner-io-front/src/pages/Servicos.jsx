@@ -56,13 +56,24 @@ function Servicos() {
       <Header></Header>
       <br/><h1>Nosso Serviços</h1>
       <div className="container">
-        {servicos.map((servico, index) => (
-          <div className="row" key={index}>
-            <div className="col-4">{servico.nome}</div>
-            <div className="col-4">{getTempo(servico.tempo)}</div>
-            <div className="col-4">{formatMoeda(servico.valor)}</div>
-          </div>
-        ))}
+        <table className="tabela-servicos">
+          <thead>
+            <tr>
+              <th>Serviço</th>
+              <th>Duração</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {servicos.map((servico) => (
+              <tr key={servico.id}>
+                <td>{servico.nome}</td>
+                <td>{getTempo(servico.tempo)}</td>
+                <td>{formatMoeda(servico.valor)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <br/><br/><button onClick={() => navigate('/agendamentos')} className='button-header-landing'>
         Reserve seu horário

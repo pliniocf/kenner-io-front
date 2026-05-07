@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Header from '../components/Header';
-import './Servicos.css'
+import './Agendamento.css'
 
 function getTempo(tempo) {
   const data = new Date(tempo);
@@ -132,7 +132,7 @@ function Agendamento() {
       <br />
       <h1>Nossos Serviços</h1>
       <div className="container">
-        <select
+        <select className="campo-agendamento"
           value={form.servicoSelecionado}
           onChange={(e) =>
             selecionarServico(e.target.value)
@@ -149,7 +149,7 @@ function Agendamento() {
         </select>
         <br /><br />
         {form.profissionais.length > 0 && (
-          <select
+          <select className="campo-agendamento"
             value={form.profissionalSelecionado}
             onChange={(e) =>
               atualizarCampo("profissionalSelecionado", e.target.value)
@@ -168,6 +168,7 @@ function Agendamento() {
         <br /><br />
         {form.profissionalSelecionado && (
           <DatePicker
+            className="campo-agendamento"
             selected={form.dataSelecionada}
             onChange={selecionarData}
             dateFormat="dd/MM/yyyy"
@@ -177,11 +178,14 @@ function Agendamento() {
         )}
         <br /><br />
         {form.horariosDisponiveis.length > 0 && (
-          <div>
+          <div className='container-horarios'>
             <h3>Horários disponíveis</h3>
             {form.horariosDisponiveis.map((horario) => (
               <button
                 key={horario}
+                className={form.horarioSelecionado === horario
+                  ? "btn-horario selecionado"
+                  : "btn-horario"}
                 onClick={() => atualizarCampo("horarioSelecionado", horario)}
               >
                 {horario}

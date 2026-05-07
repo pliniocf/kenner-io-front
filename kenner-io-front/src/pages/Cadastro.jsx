@@ -19,15 +19,36 @@ function Cadastro() {
     senha: "",
     confirmSenha: "",
     funcionario: false,
-    gerente: false
+    gerente: false,
+    hora_entrada: "",
+    hora_saida: ""
   });
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
 
+    if (name === 'funcionario') {
+      setForm({
+        ...form,
+        funcionario: checked,
+        gerente: false
+      });
+      return;
+    }
+
+    if (name === 'gerente') {
+      setForm({
+        ...form,
+        gerente: checked,
+        funcionario: false
+      });
+      return;
+    }
+
     setForm({
       ...form,
-      [name]: type === 'checkbox' ? checked : value
+      [name]:
+        type === 'checkbox' ? checked : value
     });
   }
 
@@ -47,7 +68,9 @@ function Cadastro() {
       telefone: form.telefone,
       email: form.email,
       senha: form.senha,
-      perfil: perfil
+      perfil: perfil,
+      hora_entrada: form.funcionario ? new Date(`1970-01-01T${form.hora_entrada}:00`) : null,
+      hora_saida: form.funcionario ? new Date(`1970-01-01T${form.hora_saida}:00`) : null
     }
 
     try {
@@ -60,36 +83,123 @@ function Cadastro() {
   }
 
   return (
-  <div>
-    <Header></Header>
-    <h1>Página de Cadastro</h1>
-    <br/><input className="input" name="nome" value={form.nome} onChange={handleChange} placeholder="Nome" />
-    <br/><br/><input className="input" name="cpf" value={form.cpf} onChange={handleChange} placeholder="CPF" />
-    <br/><br/><input className="input" name="telefone" value={form.telefone} onChange={handleChange} placeholder="Telefone" />
-    <br/><br/><input className="input" name="email" value={form.email} onChange={handleChange} placeholder="Email" />
-    <br/><br/><input className="input" name="senha" value={form.senha} onChange={handleChange} type="password" placeholder="Senha" />
-    <br/><br/><input className="input" name="confirmSenha" value={form.confirmSenha} onChange={handleChange} type="password" placeholder="Confirmação da Senha" />
-    <br/><br/><input type="checkbox" name="funcionario" checked={form.funcionario} onChange={handleChange}/> Funcionário
-    <input type="checkbox" name="gerente" checked={form.gerente} onChange={handleChange}/> Gerente
-    
-    {form.funcionario && <div >
-      <h1>Dias:</h1>
-      <DataTrabalho dia="2ª feira"></DataTrabalho>
-      <DataTrabalho dia="3ª feira"></DataTrabalho>
-      <DataTrabalho dia="4ª feira"></DataTrabalho>
-      <DataTrabalho dia="5ª feira"></DataTrabalho>
-      <DataTrabalho dia="6ª feira"></DataTrabalho>
-      <DataTrabalho dia="Sábado"></DataTrabalho>
-      <DataTrabalho dia="Domingo"></DataTrabalho>
-      
-      <h1>Trabalhos que realiza:</h1>
-      <MultiSelect></MultiSelect>
-    </div>}
+    <div>
+      <Header />
+      <div className="container-cadastro">
+        <h1 className="titulo-cadastro">Página de Cadastro</h1>
+        <div className="campo-linha">
+          <label>Nome</label>
+          <input
+            className="input-cadastro"
+            name="nome"
+            value={form.nome}
+            onChange={handleChange}
+            placeholder="Digite seu nome"
+          />
+        </div>
+        <div className="campo-linha">
+          <label>CPF</label>
+          <input
+            className="input-cadastro"
+            name="cpf"
+            value={form.cpf}
+            onChange={handleChange}
+            placeholder="Digite seu CPF"
+          />
+        </div>
+        <div className="campo-linha">
+          <label>Telefone</label>
+          <input
+            className="input-cadastro"
+            name="telefone"
+            value={form.telefone}
+            onChange={handleChange}
+            placeholder="Digite seu telefone"
+          />
+        </div>
+        <div className="campo-linha">
+          <label>Email</label>
+          <input
+            className="input-cadastro"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Digite seu email"
+          />
+        </div>
+        <div className="campo-linha">
+          <label>Senha</label>
+          <input
+            className="input-cadastro"
+            type="password"
+            name="senha"
+            value={form.senha}
+            onChange={handleChange}
+            placeholder="Digite sua senha"
+          />
+        </div>
+        <div className="campo-linha">
+          <label>Confirmar senha</label>
+          <input
+            className="input-cadastro"
+            type="password"
+            name="confirmSenha"
+            value={form.confirmSenha}
+            onChange={handleChange}
+            placeholder="Confirme sua senha"
+          />
+        </div>
+        <div className="checkboxes-perfil">
+          <label>
+            <input
+              type="checkbox"
+              name="funcionario"
+              checked={form.funcionario}
+              onChange={(handleChange)}
+            />
+            Funcionário
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="gerente"
+              checked={form.gerente}
+              onChange={handleChange}
+            />
+            Gerente
+          </label>
+        </div>
 
-    <br/><br/><button onClick={salvarUsuario} className='btn-salvar'>
-      Salvar
-    </button>
-  </div>
+        {form.funcionario && (
+          <div className="area-funcionario">
+            <h2>Horário de trabalho</h2>
+            <div className="linha-horario-unico">
+              <div className="grupo-hora">
+                <span>Entrada</span>
+                <input
+                  className="input-hora"
+                  type="time"
+                  name="hora_entrada"
+                  value={form.hora_entrada}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="grupo-hora">
+                <span>Saída</span>
+                <input
+                  className="input-hora"
+                  type="time"
+                  name="hora_saida"
+                  value={form.hora_saida}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+        <button onClick={salvarUsuario} className='btn-salvar'>Salvar</button>
+      </div>
+    </div>
   )
 
 }

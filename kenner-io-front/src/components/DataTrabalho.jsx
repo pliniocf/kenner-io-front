@@ -3,12 +3,22 @@ import './DataTrabalho.css'
 function DataTrabalho({ dia }) {
 
   return ( 
-    <div>
-      <br/><input type="checkbox"/> {dia}
-      <input className="input-hora" type="time" placeholder='Hora entrada'></input>
-      <input className="input-hora" type="time" placeholder='Hora saída'></input>
-      <input className="input-hora" type="time" placeholder='Hora entrada almoço'></input>
-      <input className="input-hora" type="time" placeholder='Hora saída almoço'></input>
+    <div className="linha-trabalho">
+      <label className="dia-trabalho">
+        <input type="checkbox" />{dia}
+      </label>
+
+      <div className="horarios-trabalho">
+        <div className="grupo-hora">
+          <span>Entrada</span>
+          <input className="input-hora" type="time"/>
+        </div>
+
+        <div className="grupo-hora">
+          <span>Saída</span>
+          <input className="input-hora" type="time"/>
+        </div>
+      </div>
     </div>
   );
 }

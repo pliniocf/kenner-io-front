@@ -19,14 +19,18 @@ function Header() {
   return ( 
     <div>
       <header className='header-landing'>
-        <p className='opcoes' onClick={() => navigate('/')}>Home</p>
-        <p className='opcoes' onClick={() => navigate('/servicos')}>Serviços</p>
-        {localStorage.getItem('usuario') &&
-          <p className='nome-header'>Olá {getFirstName(JSON.parse(localStorage.getItem('usuario')).nome)}</p>
-        }
-        <button onClick={localStorage.getItem('token') ? realizarLogout : () => navigate('/login')} className='button-header-landing'>
-          { localStorage.getItem('token') ? 'Sair' : 'Login / Cadastro'}
-        </button>
+        <div className='menu-esquerda'>
+          <p className='opcoes' onClick={() => navigate('/')}>Home</p>
+          <p className='opcoes' onClick={() => navigate('/servicos')}>Serviços</p>
+        </div>
+        <div className='menu-direita'>
+          {localStorage.getItem('usuario') &&
+            <p className='nome-header'>Olá {getFirstName(JSON.parse(localStorage.getItem('usuario')).nome)}</p>
+          }
+          <button onClick={localStorage.getItem('token') ? realizarLogout : () => navigate('/login')} className='button-header-landing'>
+            { localStorage.getItem('token') ? 'Sair' : 'Login / Cadastro'}
+          </button>
+        </div>
       </header>
     </div>
   );

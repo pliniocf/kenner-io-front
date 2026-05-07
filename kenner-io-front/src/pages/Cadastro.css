@@ -13,10 +13,118 @@
 }
 
 .btn-salvar {
-  padding: 8px 16px;
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
   background: black;
   color: white;
-  border: none;
+  font-size: 16px;
   cursor: pointer;
-  margin-left: auto;
+  transition: 0.2s;
+}
+
+.btn-salvar:hover {
+  opacity: 0.9;
+}
+
+.container-cadastro {
+  width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.titulo-cadastro {
+  margin-bottom: 30px;
+}
+
+.campo-linha {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.campo-linha label {
+  width: 170px;
+  font-weight: 600;
+}
+
+.input-cadastro {
+  flex: 1;
+  height: 42px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 15px;
+}
+
+.input-cadastro:focus {
+  outline: none;
+  border-color: #0d6efd;
+}
+
+.checkboxes-perfil {
+  display: flex;
+  gap: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.area-funcionario {
+  margin-top: 30px;
+}
+
+.linha-trabalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.dia-trabalho {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.horarios-trabalho {
+  display: flex;
+  gap: 20px;
+}
+
+.grupo-hora {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.grupo-hora span {
+  font-size: 13px;
+  color: #666;
+}
+
+.input-hora {
+  width: 130px;
+  height: 40px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 0 10px;
+}
+
+.multiselect-container {
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+.linha-horario-unico {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }

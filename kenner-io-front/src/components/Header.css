@@ -22,6 +22,7 @@
 
 .opcoes {
   padding-right: 30px;
+  margin: 0;
 }
 
 .opcoes:hover {
@@ -31,4 +32,16 @@
 
 .nome-header {
   margin-left: auto;
+  margin: 0;
+}
+
+.menu-esquerda {
+  display: flex;
+  align-items: center;
+}
+
+.menu-direita {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
