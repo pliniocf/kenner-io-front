@@ -1,5 +1,6 @@
 /* Página que vai ter os campos de login, senha e link para cadastro */
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
 
@@ -17,11 +18,20 @@ function getTempo(tempo) {
   return `${horas}h ${minutos}min`;
 }
 
+function formatMoeda(valor) {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(valor);
+}
+
 function Servicos() {
 
   const [servicos, setServicos] = useState([]);
   const [dataSelecionada, setDataSelecionada] = useState(null);
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
+
+  const navigate = useNavigate();
   //const [novoServico, setNovoServico] = useState({nome: '', duracao: '', valor: 0})
 
   useEffect(() => {
@@ -50,22 +60,13 @@ function Servicos() {
           <div className="row" key={index}>
             <div className="col-4">{servico.nome}</div>
             <div className="col-4">{getTempo(servico.tempo)}</div>
-            <div className="col-4">R$ {Number(servico.valor).toFixed(2)}</div>
+            <div className="col-4">{formatMoeda(servico.valor)}</div>
           </div>
         ))}
       </div>
-      <br/><br/><button onClick={() => setMostrarCalendario(true)} className='button-header-landing'>
+      <br/><br/><button onClick={() => navigate('/agendamentos')} className='button-header-landing'>
         Reserve seu horário
       </button>
-      {mostrarCalendario && (
-        <div><br/><br/>
-          <DatePicker
-            selected={dataSelecionada}
-            onChange={(date) => setDataSelecionada(date)}
-            dateFormat="dd/MM/yyyy"
-            minDate={new Date()}
-            placeholderText="Selecione uma data"
-      /></div>)}
     </div>
   )
 

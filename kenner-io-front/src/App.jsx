@@ -15,7 +15,6 @@ function App() {
   return (
     <div>
       <Header></Header>
-
       <main>
         <h1>Home</h1>
       </main>
