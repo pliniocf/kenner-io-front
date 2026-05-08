@@ -1,7 +1,7 @@
 /* Página com todos os atributos necessários para cadastro de usuário
 Terá que ser dividida entre cadastro do gerente e cadastro normal de
 usuário */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import DataTrabalho from '../components/DataTrabalho';
 import MultiSelect from '../components/MultiSelect';
@@ -23,6 +23,26 @@ function Cadastro() {
     hora_entrada: "",
     hora_saida: ""
   });
+  
+  const [servicos, setServicos] = useState([]);
+  const [servicosSelecionados, setServicosSelecionados] = useState([]);
+
+  async function buscarServicos() {
+    try {
+
+      const response = await axios.get('http://localhost:3000/servicos');
+
+      setServicos(response.data);
+
+    } catch (err) {
+      console.log(err);
+      alert('Erro ao buscar serviços');
+    }
+  }
+
+  useEffect(() => {
+    buscarServicos();
+  }, []);
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -70,7 +90,9 @@ function Cadastro() {
       senha: form.senha,
       perfil: perfil,
       hora_entrada: form.funcionario ? new Date(`1970-01-01T${form.hora_entrada}:00`) : null,
-      hora_saida: form.funcionario ? new Date(`1970-01-01T${form.hora_saida}:00`) : null
+      hora_saida: form.funcionario ? new Date(`1970-01-01T${form.hora_saida}:00`) : null,
+      servicos: servicosSelecionados.length > 0 &&
+        servicosSelecionados.map(servico => servico.value)
     }
 
     try {
@@ -194,6 +216,17 @@ function Cadastro() {
                   onChange={handleChange}
                 />
               </div>
+            </div>
+            <div className="grupo-servicos">
+              <span>Serviços que o funcionário realiza</span>
+              <MultiSelect
+                options={servicos.map(servico => ({
+                  value: servico.id,
+                  label: servico.nome
+                }))}
+                value={servicosSelecionados}
+                onChange={(valores) => setServicosSelecionados(valores)}
+              />
             </div>
           </div>
         )}
